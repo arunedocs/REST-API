@@ -44,9 +44,14 @@ router.delete("/user/:id", async (req, res) => {
 });
 
 router.post("/user", async (req, res) => {
+  const data = new Student({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
+  });
   try {
-    const user = Student;
-    const createuser = await user.save();
+    const createuser = await data.save();
     res.status(201).send(createuser);
   } catch (e) {
     res.status(400).send(e);
